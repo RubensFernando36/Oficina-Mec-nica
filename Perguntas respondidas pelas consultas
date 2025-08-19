@@ -1,0 +1,20 @@
+Quantas ordens de serviço cada cliente fez?
+SELECT id_cliente, COUNT(*) FROM Ordem_Servico GROUP BY id_cliente;
+
+Quais peças foram usadas em cada ordem?
+SELECT os.id_os, p.descricao, osp.quantidade
+FROM OS_Peca osp
+JOIN Peca p ON osp.id_peca = p.id_peca
+JOIN Ordem_Servico os ON osp.id_os = os.id_os;
+
+Quais serviços foram realizados em cada ordem?
+SELECT os.id_os, s.descricao, oss.quantidade
+FROM OS_Servico oss
+JOIN Servico s ON oss.id_servico = s.id_servico
+JOIN Ordem_Servico os ON oss.id_os = os.id_os;
+
+Relação peças x fornecedores x estoque
+SELECT f.nome AS fornecedor, p.descricao AS peca, e.quantidade
+FROM Peca p
+JOIN Fornecedor f ON p.id_fornecedor = f.id_fornecedor
+JOIN Estoque e ON p.id_peca = e.id_peca;
