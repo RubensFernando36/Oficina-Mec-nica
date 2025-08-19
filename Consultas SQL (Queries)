@@ -1,0 +1,19 @@
+SELECT nome, email FROM Cliente;
+
+SELECT descricao, preco FROM Peca WHERE preco > 100;
+
+SELECT id_os, valor_total, 
+       valor_total * 0.9 AS valor_com_desconto
+FROM Ordem_Servico;
+
+SELECT descricao, preco FROM Servico ORDER BY preco DESC;
+
+SELECT id_cliente, COUNT(*) AS qtd_ordens
+FROM Ordem_Servico
+GROUP BY id_cliente
+HAVING COUNT(*) > 1;
+
+SELECT c.nome AS cliente, v.modelo AS veiculo, os.id_os, os.status, os.valor_total
+FROM Cliente c
+JOIN Veiculo v ON c.id_cliente = v.id_cliente
+JOIN Ordem_Servico os ON os.id_cliente = c.id_cliente;
